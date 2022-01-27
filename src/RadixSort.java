@@ -9,27 +9,13 @@ public class RadixSort {
 	RadixSort() {
 		for(int i = 0; i < 10; i++) {
 			a[i] = new LinkedQueue<Integer>();
-//			a[i].enqueue(i);
 		}
 	}
 	
 	public void addToInput(String s) {
 		input += s;
-//		if(input.length() == 0) {
-//			input += s;
-//		} else {
-//			
-//		}
 		if(s.charAt(s.length()-1) != ' ') {
 			input += " ";
-		}
-	}
-	
-	public void toArray() {
-		String[] sa = input.split(" ");
-		for(int i = 0; i < sa.length; i++) {
-//			Integer.decode(sa[i]);
-			System.out.println(sa[i]);
 		}
 	}
 	
@@ -40,43 +26,27 @@ public class RadixSort {
 		for(int i = 0; i < sa.length; i++) {
 			ia[i] = Integer.decode(sa[i]);
 		}
-//		for(int i = 0; i < sa.length; i++) {
-//			Integer.decode(sa[i]);
-//			System.out.println(sa[i]);
-//		}
 		for(int i = 0; i < sa.length; i++) {
 			int n = ia[i];
 			maxLength = Math.max(maxLength, Integer.valueOf(n).toString().length());
 			a[getValue(n, 0)].enqueue(n);
 		}
-//		for(int j = 0; j < 10; j++) {
-//			System.out.println("size " + a[j].size());
-//		}
-//		System.out.println("****" + maxLength);
 		if(maxLength > 1) {
 			for(int i = 1; i < maxLength; i++) {
 				for(int j = 0; j < 10; j++) {
 					LinkedQueue<Integer> temp = a[j];
 					int size = temp.size();
-//					for(int p = 0; p < size; p++) {
-//						
-//					}
-//					System.out.println("temp size " + size);
 					for(int k = 0; k < size; k++) {
 						Integer n = temp.dequeue();
 						if(n.toString().length() <= i) {
-//							System.out.println("***");
-
 							a[0].enqueue(n);
 						} else {
-//							System.out.println("******");
 							a[getValue(n, i)].enqueue(n);
 						}
 					}
 				}
 			}
 		}
-		
 	}
 	
 	public int getValue(int number, int place) {
@@ -95,6 +65,5 @@ public class RadixSort {
 			s += n.toString() + "\n";
 		}
 		return s;
-
 	}
 }
